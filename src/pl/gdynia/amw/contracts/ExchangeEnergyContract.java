@@ -16,7 +16,6 @@ import java.util.Arrays;
 public final class ExchangeEnergyContract extends SmartContract {
 
     public ExchangeEnergyContract(){
-        // populates array-backed list of verification rules
         rulesList = Arrays.asList(
                 new TheSameCommunity(),
                 new DifferentProsumers(),
