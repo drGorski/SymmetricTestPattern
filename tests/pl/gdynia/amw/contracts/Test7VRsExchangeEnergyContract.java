@@ -1,10 +1,12 @@
 package pl.gdynia.amw.contracts;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import pl.gdynia.amw.Transaction;
 
-class TestExchangeEnergyContract {
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class Test7VRsExchangeEnergyContract {
     ExchangeEnergyContract sC = new ExchangeEnergyContract();
     @Test
     void checkSCPositive() {
@@ -25,6 +27,18 @@ class TestExchangeEnergyContract {
         assertFalse(sC.checkSC(tr));
     }
     @Test
+    void checkSCNegativeTargetNeedPositive() {
+        System.out.println("--- checkSCNegativeTargetNeedPositive");
+        Transaction tr = new Transaction(100, 300, 0, 20, 10, 1001, 1002, 101, 101);
+        assertFalse(sC.checkSC(tr));
+    }
+    @Test
+    void checkSCNegativeSourceSurplusPositive() {
+        System.out.println("--- checkSCNegativeSourceSurplusPositive");
+        Transaction tr = new Transaction(100, 0, 400, 20, 10, 1001, 1002, 101, 101);
+        assertFalse(sC.checkSC(tr));
+    }
+    @Test
     void checkSCNegativePositiveValue() {
         System.out.println("--- checkSCNegativePositiveValue");
         Transaction tr = new Transaction(0, 300, 400, 20, 10, 1001, 1002, 101, 101);
@@ -42,4 +56,5 @@ class TestExchangeEnergyContract {
         Transaction tr = new Transaction(100, 300, 400, 20, 10, 1001, 1002, 101, 102);
         assertFalse(sC.checkSC(tr));
     }
+
 }

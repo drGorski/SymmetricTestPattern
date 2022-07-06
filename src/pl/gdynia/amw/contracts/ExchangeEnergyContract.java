@@ -20,8 +20,12 @@ public final class ExchangeEnergyContract extends SmartContract {
                 new TheSameCommunity(),
                 new DifferentProsumers(),
                 new PositiveValue(),
-                new SourceSurplusEnergy(),
-                new TargetNeedForEnergy());
+                new SourceSurplusPositive(), // added for 7
+                new TargetNeedPositive(), // added for 7
+                new SourceSurplusEnergy(), // removed for 3
+                //new TargetProductionPositive(), // added for 9
+                //new TargetBatteryPositive(), // added for 9
+                new TargetNeedForEnergy()); // removed for 3
     }
     @Override
     public boolean checkSC(Transaction tr){
